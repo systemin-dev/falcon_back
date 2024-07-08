@@ -18,12 +18,13 @@ Route::prefix('{locale?}')->group(function () {
     Route::get('/posts/findSlug/{slug}', [ApiPostController::class, 'changeLocaleSlug'])->name('posts.changeLocaleSlug');
     Route::apiResource('/categories', ApiCategoryController::class, ['only' => ['index', 'show']]);
 
-    Route::apiResource('/boats', ApiBoatController::class, ['only' => ['index', 'show']]);
     Route::prefix('boats')->group(function () {
+        Route::get('/used', [ApiBoatController::class, 'getUsedBoats']);
         Route::get('/range/{range}', [ApiBoatController::class, 'getRangeBoats']);
         Route::get('/type/{type}', [ApiBoatController::class, 'getTypeBoats']);
-        Route::get('/used', [ApiBoatController::class, 'getUsedBoats']);
+
     });
+    Route::apiResource('/boats', ApiBoatController::class, ['only' => ['index', 'show']]);
 
 });
 
