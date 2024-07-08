@@ -1,0 +1,1 @@
+// Pour les posts et boats seeder : cp -r ./public/assets/images/ ./storage/app/public/
